@@ -90,3 +90,20 @@ Thanks to Mitacs and NSERC (Natural Sciences and Engineering Research Council of
 </details>
 
 ✨Stars, forks, issues, and PRs are all welcome! If you have any other questions, please [drop me an email](mailto:wenjay.du@gmail.com) at any time.
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Steps to be followed to run the code in google colab :
+1.	Download the code and upload it to your google drive 
+2.	Install any missing packages 
+3.	change the directory to the SAITS code folder in drive
+ex: %cd /content/drive/MyDrive/SAITS-master
+4.	Data prepossessing 
+i)	change directory to dataset_generating_scripts 
+ii)	Run script  !bash data_downloading.sh to download the dataset
+iii)	Run script !bash dataset_generating.sh to generate the dataset (missingness is induced and dataset is converted to .h5 format). This file is useed for further training purposes.
+5.	In cofigs folder select a model file and change the paths and directories . 
+	Example in AirQuality_SAITS_best.ini file change the file paths and dir (In the following line nos. 3, 5,6,12,15).
+6.	Training script  !CUDA_VISIBLE_DEVICES=0  python run_models.py --config_path configs/AirQuality_SAITS_best.ini
+7.	Results are saved in NIPS_results folder 
+8.	Before testing the model update the file paths in AirQuality_SAITS_best.ini for testing (line no. 10,80).
+9.	Testing script !CUDA_VISIBLE_DEVICES=0 python run_models.py  --config_path configs/AirQuality_SAITS_best.ini --test_mode
+10.	Test results are stored in NIPS_results/AirQuality_SAITS_best/step_1015
